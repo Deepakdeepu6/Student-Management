@@ -1,0 +1,106 @@
+<?php
+session_start();
+
+
+?>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+      details
+	  
+	  </title>
+	  </head>
+	  <style>
+	  a{color:red;
+	   text-decoration:none;}
+	   a:link{color:violet;
+	   font-weight:bold;}
+	   a:hover{color:green;}
+
+	   a:active{color:violet;}
+	   body {background-image:url(hd.jpeg);background-size:cover;}
+	   td 
+	   {color:red;}
+	   
+	   body{
+	       top:50%;  
+	   }
+	   #ww:hover
+	   
+	{
+	border-style:double;
+	font-style:italic;
+	
+	
+	}   
+	 
+		     
+			 </style>
+			<?php
+			echo .$_POST['user'];
+			 
+			 
+			 
+			 ?>
+	  <body>
+	  <h1><?php $_SESSION['username']?></h1>
+	      <table border="5" cellpadding="50px"  width="100%" style="border-collapse:collapse;border-color:7px solid gold;">
+		  <caption style="color:violet;">DETAILS</caption>
+		    <tr>
+			<th>
+		    
+			  <a href="teaching.html" target="_blank" id="ww"><b>1.Teaching</b></a>
+			  
+			  </th>
+			 <td rowspan="5" ><fieldset style="background-color:rgba(0,0,0,0.5);width:75px;"><legend align="center">FILL IN THE DETAILS</legend><form action="">NAME:
+			  
+			  <input type="text" name="name" placeholder="NAME" value="" size="30"><hr>
+			   DATE OF BIRTH:<input type="date" name="birth" value="" size="30"><br /><hr>
+				  DATE OF JOINING:
+				  
+				 <input type="date" name="join" value="" size="55"><hr>QUALIFICATION:<input type="text" name="text" value""size="25"><br /><hr>
+				 DESIGNATION:<input type="text" placeholder="" name="" size="30"><hr><p></p>ADDRESS:<textarea name="address"></textarea><br /><hr>
+				 <p align="center-right">UPLOAD IMAGE:<input type="file"></p>
+				 
+				 <input type="button" onclick="window.print()" value="print">
+				<br />
+				 <br />
+				<input type="reset" name="">
+				 
+				 </fieldset>
+                </form>
+			  </td>
+			  </tr>
+			  <tr>
+			  <th>
+			      <a href="" id="ww"><b>2.workshop</b></a>
+				  </th> 
+				 
+				  
+				  
+				                   
+				  </tr>
+				  <tr>
+				  <th>
+				  <a href="" id="ww"><b>3.papers</b></a>
+				  </th>
+				  
+				  </tr>
+				  
+				  <tr>
+				  <th></th>
+				 
+				  </tr>
+				  <tr>
+				  <th></th></tr>
+
+				  
+	
+				
+				 
+				  </table>
+			 
+			  
+			  </body>
+			  </html>

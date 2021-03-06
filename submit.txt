@@ -1,0 +1,289 @@
+<?php
+session_start();
+if(!isset($_SESSION['username']))
+{
+	header("location:second.php");
+	
+}
+else if(!isset($_SERVER['HTTP_REFERER'])){
+   
+    header('location:second.php');
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+      details
+	  
+	  </title>
+	  </head>
+	 
+
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width">
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+  
+	  <style>
+	  
+	   body
+	   {
+		   
+	   background-size:cover;
+	   }
+	   #profile td 
+	   {
+		   color:white;
+		   }
+		   #profile .tab{ 
+	  background-color:rgba(0,0,0,0.5);
+		   margin:0px auto;
+		    width:100%;
+			max-width:800px;
+		  font-size:20px;
+		 font-weight:200;
+		 font-style:vardana;
+		 color:white;
+		 
+		  
+	  }
+	  @media only screen and (max-width:500px)
+	  {
+		#profile .tab
+		  {  margin:auto;
+			  max-width:500px;
+			  left:0%;
+			  font-size:18px;
+			  
+		  }
+		  
+		  #profile form{
+			  max-width:220px;
+		  }
+	  }
+	   
+	  #profile form{
+	
+	width:100%;
+}	
+	 #profile a{
+		 color:black;
+	 }
+	 #profile a:link{
+		text-decoration:none;
+	 }
+#profile img{
+			max-width:120px;
+			width:100%;
+			height:120px;
+		}     
+		#profile .page-header
+		{  
+		  font-size:30px;
+		  color:green;
+		  font-style:vardana;
+		  font-weight:bold;
+			background-color:lime;
+		}
+		#profile table{
+			background-color:rgba(0,0,0,0.5);
+		}
+		/* answering */
+		#answering table{
+	max-width:100px;
+	text-transform:uppercase;
+	font-size:20px;
+	font-style:vardana;
+	margin:auto;
+	font-weight:bold;
+}
+#answering textarea{
+	height:100px;
+	width:300px;
+	
+}
+#answering .heading{
+	width:100%;
+	font-size:20px;
+	font-weight:bold;
+
+}
+#answering .left{
+	left:0%;
+	position:relative;
+}
+			 </style>
+			 
+			
+	  <body>
+		  <ul class="nav nav-tabs">
+           <li class="nav-item active"><a class="nav-link" data-toggle="tab" href="#profile">Profile</a></li>
+           <li class="nav-item "><a class="nav-link" data-toggle="tab" href="#answering">Question from Students</a></li>
+           <li class="nav-item "><a class="nav-link" data-toggle="tab" href="#">Handling Semester</a></li>
+           <li class="nav-item "><a class="nav-link" data-toggle="tab" href="#">Announce</a></li>
+
+                
+
+	</ul>
+	 <!-- Main profile  -->
+	  <?php
+	      include("process.php");
+		  $user=$_SESSION['username'];
+		  $sl="select * from users where username='$user'";
+		  $res=mysqli_query($conn,$sl);
+		  $row=mysqli_fetch_array($res);
+		  if($row)
+	   
+	   {
+	     $_SESSION['email']=$row['email'];
+	    $_SESSION['username']=$row['username'];
+	  ?>
+<div class="tab-content">
+	 <div class="container-fluid tab-pane  active" id="profile">
+	    <div class="page-header text-center ">
+		<?php echo @$_GET['success'];?>
+		</div>
+	 
+	      <table border="5" cellpadding="30px"  class="table table-sm table-md-6 table-lg-12 " width="100%" style="border-collapse:collapse;border-color:7px solid gold;"
+		   <table border="5" cellpadding="30px"  width="100%" style="border-collapse:collapse;border-color:7px solid gold;">
+		   <tr><th colspan="2" style="color:white;background-color:black;width:100%;text-align:center;text-transform:uppercase;font-size:30px;letter-spacing:3px;"> WELCOME-<?php echo $row['username'];?></br>YOUR DETAILS</th></tr>
+		   <tr>
+			
+			 <td rowspan="5" >
+			 <form action="process2.php" method="post" enctype="multipart/form-data">NAME:
+			  
+			  <input type="text" name="name"  class="form-control" placeholder="NAME" value="<?php echo $row['username'];?>" size="30"><hr>
+			   DATE OF BIRTH:<input type="date" name="birth"  class="form-control" value="<?php echo $row['birth'];?>" size="30"><br /><hr>
+				  DATE OF JOINING:
+				  
+				<input type="date" name="dat"  class="form-control" value="<?php echo $row['dat'];?>" size="30"><hr>QUALIFICATION:<input type="text" name="tet" class="form-control" value="<?php echo $row['qual'];?>" size="25"><br /><hr>
+				 DESIGNATION:<input type="text"  class="form-control" placeholder="" name="designation" value="<?php echo $row['designation'];?>" size="30"><hr><p></p>ADDRESS:<textarea name="address" ><?php echo $row['address'];?></textarea><br /><hr>
+				 <p align="center-right">UPLOAD IMAGE:<input type="file" name="image" value="<?php echo $row['image']['name']?>"</p>
+				 <input type="submit"   value="Update" class="btn btn-success btn-lg btn-block"/>
+				
+				 <br />
+				 <br />
+				<input type="button" onclick="window.print()" value="print">
+				 </form>
+				 <a href='logout.php'><button class='btn btn-warning btn-lg btn-block'>Logout</button></a>
+				 
+				
+               
+			  </td>
+			  </tr>
+			
+				  <tr>
+				  <td><?php echo "<img src='images/".$row['image']."'>"?></td></tr>
+             
+				  
+	
+				
+				 
+				  </table>
+			
+			 
+			
+			 
+			
+	   <?php
+	   
+	   }
+	   ?> 
+	</div>
+                                    <!-- answering the question -->
+
+		<div class="container tab-pane fade" id="answering">
+<div class="card heading">
+<div class="card-header text-center ">
+ Doubts fom students
+   <?php 
+if(isset($_POST['submit1']))
+{
+	$sl="select * from question";
+	$res=mysqli_query($conn,$sl);
+	
+	$i=1;
+	while($row=mysqli_fetch_array($res))
+	{
+while($i<=$row['id'])
+{   	if(!empty($_POST["answer_{$i}"]))
+	{
+	$ans=$_POST["answer_{$i}"];
+	$username=$_SESSION['username'];
+mysqli_query($conn,"update question set answers='$ans',answered='$username' where id={$i}");
+  echo "<script>window.location.href='submit.php';</script>";
+	}
+    $i++;
+ }
+	}
+}
+
+
+
+
+
+?>
+</div>
+</div>
+
+<?php echo @$_GET['answer'];?>
+
+
+ <?php 
+
+	 
+ $sl="select * from question
+ 
+ join handling on section=sem1 or section=sem2 or section=sem3 or section=sem4 where semail='".$_SESSION['email']."' order by id desc";
+ $result=mysqli_query($conn,$sl);
+ while($row=mysqli_fetch_array($result))
+ {    
+      if ($_SESSION['username']==$row['answered'])
+		  $row['answered']='yourself';
+	 ?>           
+
+		<form action="" method="post">
+		<div class="container">
+	
+    <table class="table table-light table-striped table-bordered table table-xs">
+	<thead>
+	  <tr><td scope="col">question number</td><td scope="col"><?php echo $row['id'];?></td></tr>
+	 
+	  <tr><td scope="col">question</td><td scope="col"><?php echo $row['questions'];?></td></tr>
+	   
+       <tr><td scope="col">answer</td><td scope="col"><textarea name="answer_<?php echo $row['id'];?>" id="answer_<?php echo $row['id'];?>" ><?php echo $row['answers']?></textarea></td>
+         <tr><td scope="col">questionby</td><td scope="col"><?php echo $row['questionby'];?>(<?php echo $row['section'];?>)</td></tr>
+	   <tr><td scope="col">answered by(lecturer)</td><td scope="col"><?php echo $row['answered'];?></td></tr>
+	   	  
+	  <tr ><td scope="col" colspan="2"><input type="submit" name="submit1" class="btn btn-success btn-lg btn-block" value="submit"></td></tr
+	 <tr><td> </td><td></tr>
+	  
+	<tr><td><hr></td><td><hr></td></tr>
+	   </thead>
+	  </table>
+	  </div>
+	 
+	  
+	  </form>
+	  
+	 <?php
+ }
+      
+	   
+	 
+	   ?>
+		</div>	  
+
+
+
+
+
+		
+</div>	  
+</body>
+</html>

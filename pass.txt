@@ -1,0 +1,3 @@
+
+MySQL DB Name	MySQL User Name	MySQL Password	MySQL Host Name	PHPMyAdmin
+epiz_26328250_login	epiz_26328250	(Your vPanel Password)	sql106.epizy.com	

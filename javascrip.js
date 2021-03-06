@@ -1,0 +1,1 @@
+<script src="sweetalert/lib/sweet-alert.min.js"></script>;
